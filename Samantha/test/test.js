@@ -29,6 +29,7 @@ describe('Test HTTP server',() => {
         done();
       })
   })
+
   it('should return a name with a post request', (done) => {
     request('localhost:3000')
       .post('/greet')
@@ -39,6 +40,7 @@ describe('Test HTTP server',() => {
         done();
       })
   })
+
   it('should get back at 404 error', (done) => {
     request('localhost:3000')
       .get('/fakeURL')
