@@ -32,7 +32,7 @@ var server = http.createServer((req, res) => {
       res.end();
     });
   } else {
-    res.writeHead(404, {'Content-Type': 'application/json'});
+    res.writeHead(404, {'Content-Type': 'text/html'});
     res.write('404 whatever you were looking for was  not found. Sorry');
     res.end();
   }

@@ -11,22 +11,27 @@ describe('http server tests', () => {
     request('localhost:3000')
     .get('/time')
     .end((err, res) => {
-      expect(typeof res.body).to.equal(Date());
+      // expect(res).to.have.status(200);
+      expect(res.text).to.equal(Date());
       done();
     });
   });
   it('should return 404 when an incorrect path is entered', (done) => {
-    request('localhost:3000').get('ewersdfaf').end((err, res) => {
-      expect(res.status).to.equal(404);
+    request('localhost:3000')
+    .get('/ewersdfaf')
+    .end((err,res) => {
+      expect(res).to.have.status(404);
       done();
     });
   });
-  it('should return name hello. I see you there when accessing greet/name', (done) => {
-    request('localhost:3000')
-    .get('greet/name')
-    .end((err, res) => {
-      expect(res).to.equal('name, hello. I see you there.');
-      done();
-    })
-  })
 });
+it('should return "Thom, hello. I see you there." with POST request', (done) => {
+    request('localhost:3000')
+    .post('/greet')
+    .send({'name': 'Thom'})
+    .end((err, res) => {
+      expect(err).to.eql(null);
+      expect(res.text).to.eql('{"name":"Thom"}');
+      done();
+    });
+  });
