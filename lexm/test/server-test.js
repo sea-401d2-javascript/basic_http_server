@@ -31,10 +31,11 @@ describe('Testing vanilla HTTP server', () => {
         done();
       });
   });
-  it('should respond to /greet by accepting name as JSON and greeting', (done)=> {
+  it('should respond to /greet POST request', (done)=> {
     request('localhost:3000')
       .post('/greet')
       .set('Content-Type', 'application/json')
+      .set('name', 'Fred')
       .send('{"name": "Fred"}')
       .end((err, res) => {
         expect(err).to.eql(null);

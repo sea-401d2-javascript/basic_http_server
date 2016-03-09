@@ -16,6 +16,13 @@ var server = http.createServer((req, res) => {
     return res.end();
   }
 
+  if(req.method === 'POST' && req.url === '/greet') {
+    res.writeHead(200, {'content-type': 'text/html'});
+    console.log('Hello, ' + req.headers.name);
+    res.write('Hello, ' + req.headers.name);
+    return res.end();
+  }
+
   if(req.url === '/') {
     res.writeHead(200, {'content-type': 'text/html'});
     var index = fs.createReadStream(__dirname + '/public/index.html');
