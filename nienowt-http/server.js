@@ -1,7 +1,10 @@
 var http = require('http');
 
+
+
 var server = http.createServer((req, res) => {
   var id = req.url.split('/')[2];
+  var usr;
 
   if (req.method === 'GET' && req.url === '/time') {
     var time = new Date();
@@ -16,9 +19,15 @@ var server = http.createServer((req, res) => {
     return res.end();
   }
 
-  if(req.method === 'POST' && req.url === '/greet/' + id) {
-    res.writeHead(200, {'content-type':'application/json'});
-    res.write(JSON.stringify({'Greeting':'Welcome ' + id}));
+  if(req.method === 'POST' && req.url === '/greet') {
+    res.writeHead(200, {'content-type':'text/http'});
+    req.on('data',(data) =>{
+      var user = data.toString();
+      usr = JSON.parse(user);
+      console.log('Welcome', usr.name);
+
+    })
+    // res.write('welcome ' +usr.name);
     return res.end();
   }
 
