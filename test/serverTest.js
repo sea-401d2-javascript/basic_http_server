@@ -34,10 +34,19 @@ describe('Vanilla HTTP server tests', () => {
       .end((err,res) => {
         expect(err).to.eql(null);
         expect(res.text.indexOf('GMT')).to.be.above(-1);
-        console.log(res.text);
         done();
       });
   });
+  it('should return "Hello, name"', (done) => {
+    request('localhost:3000')
+      .get('/greet/name')
+      .end((err,res) => {
+        expect(err).to.eql(null);
+        expect(res.text).to.eql('"Hello, name"');
+        done();
+      });
+  });
+
   it('should return the 404 page', (done) => {
     request('localhost:3000')
       .get('/404idj')
