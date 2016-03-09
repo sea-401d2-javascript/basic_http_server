@@ -1,28 +1,41 @@
+'use strict';
 var http = require('http');
 // var fs = require('fs');
-
 var currentTime;
+var id;
 
 http.createServer((req,res) =>{
-  var u = req.url.split('/');
-  var id = u[2];
-  console.log('/greet/' + id);
+
   timeStamp();
 
-  if(req.url === '/time'){
-    res.writeHead(200,'Content-Type: test/html');
+  if(req.method === 'GET' && req.url === '/time'){
+    res.writeHead(200,{'content-type': 'text/html'});
     res.write(currentTime);
-    res.end();
+    return res.end();
+  }
+
+  if(req.method === 'POST' && req.url === '/greet'){
+    req.on('data', (data) =>{
+      id = JSON.parse(data).greet;
+      console.log(id);
+    });
+    res.writeHead(200,{'content-type': 'text/html'});
+    return res.end();
   }
 
   if(req.url === '/greet/' + id){
-    res.writeHead(200,'Content-Type: test/html');
-    res.write('<p> Hello, ' + id + '! </p>');
-    res.end();
+    console.log('Here is get: ' + id);
+    res.writeHead(200,{'content-type': 'text/html'});
+    res.write('Hello, ' + id + '!');
+    return res.end();
   }
+
+
 }).listen(3000, ()=> console.log('Port 3000 started!'));
 
-
+// **************************************************************
+//creating time stamp and call-site is in the first if statement
+// **************************************************************
 function timeStamp (){
   var now = new Date();
   var hour = now.getHours();
