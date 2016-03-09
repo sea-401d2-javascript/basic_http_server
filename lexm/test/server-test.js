@@ -26,7 +26,17 @@ describe('Testing vanilla HTTP server', () => {
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.test).to.be.eql('Hello, name');
+        expect(res.text).to.eql('Hello, name');
+      });
+  });
+  it('should respond to /greet by accepting name as JSON and greeting', ()=> {
+    request('localhost:3000')
+      .put('/greet')
+      .set('name', 'Fred')
+      .end((err, res) => {
+        expect(err).to.eql(null);
+        expect(res).to.have.status(200);
+        expect(res.text).to.eql('Hello, Fred');
       });
   });
 });
