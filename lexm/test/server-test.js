@@ -9,6 +9,7 @@ require(__dirname + '/../server');
 var dateFromServer = '';
 
 describe('Testing vanilla HTTP server', () => {
+  var html;
   it('should respond to /time with the current time', (done) => {
     request('localhost:3000')
       .get('/time')
@@ -20,16 +21,17 @@ describe('Testing vanilla HTTP server', () => {
         done();
       });
   });
-  it('should respond to /greet/name with greeting', () => {
+  it('should respond to /greet/name with greeting', (done) => {
     request('localhost:3000')
       .get('/greet/name')
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
         expect(res.text).to.eql('Hello, name');
+        done();
       });
   });
-  it('should respond to /greet by accepting name as JSON and greeting', ()=> {
+  it('should respond to /greet by accepting name as JSON and greeting', (done)=> {
     request('localhost:3000')
       .put('/greet')
       .set('name', 'Fred')
@@ -37,6 +39,7 @@ describe('Testing vanilla HTTP server', () => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
         expect(res.text).to.eql('Hello, Fred');
+        done();
       });
   });
 });
