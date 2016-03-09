@@ -9,7 +9,7 @@ require(__dirname + '/../server');
 var dateFromServer = '';
 
 describe('Testing vanilla HTTP server', () => {
-  var html;
+  // var html;
   it('should respond to /time with the current time', (done) => {
     request('localhost:3000')
       .get('/time')
@@ -33,8 +33,9 @@ describe('Testing vanilla HTTP server', () => {
   });
   it('should respond to /greet by accepting name as JSON and greeting', (done)=> {
     request('localhost:3000')
-      .put('/greet')
-      .set('name', 'Fred')
+      .post('/greet')
+      .set('Content-Type', 'application/json')
+      .send('{"name": "Fred"}')
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
