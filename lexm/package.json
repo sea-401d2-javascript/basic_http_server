@@ -1,0 +1,19 @@
+{
+  "name": "basic-http-server",
+  "version": "0.1.0",
+  "description": "Basic HTTP Server",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lexm/basic_http_server.git"
+  },
+  "author": "Lex Myers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lexm/basic_http_server/issues"
+  },
+  "homepage": "https://github.com/lexm/basic_http_server#readme"
+}
