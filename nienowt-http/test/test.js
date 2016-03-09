@@ -17,8 +17,8 @@ describe('http server', () => {
       expect(data).to.have.header('content-type','text/html');
       expect(data.text).to.eql('Welcome TERRY, this is life now.');
       done();
-    })
-  })
+    });
+  });
 
   it('should respond to /time with time', (done) => {
     request('localhost:3000')
@@ -29,8 +29,8 @@ describe('http server', () => {
       expect(data).to.have.header('content-type','text/html');
       expect(typeof data.text).to.eql('string');
       done();
-    })
-  })
+    });
+  });
 
   it('should respond to /greet with a json object', (done) => {
     request('localhost:3000')
@@ -41,8 +41,8 @@ describe('http server', () => {
       expect(data).to.have.header('content-type','application/json');
       expect(data.body).to.eql({Greeting:'Welcome TERRY'});
       done();
-    })
-  })
+    });
+  });
 
   it('should respond to 404 with nope + sad wink', (done) =>{
     request('localhost:3000')
@@ -53,6 +53,6 @@ describe('http server', () => {
       expect(data).to.have.header('content-type','text/html');
       expect(data.text).to.eql('Nope ;( ');
       done();
-    })
-  })
-})
+    });
+  });
+});
