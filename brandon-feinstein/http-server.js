@@ -9,7 +9,6 @@ var server = http.createServer((req, res) => {
   if(req.method === 'GET' && req.url === '/') {
     res.writeHead(200, {'Content-Type':'text/plain'}); //tells what kind of response status and what format the response will be in
     res.write('Hello!');
-
     res.end();
   }
   if(req.method === 'GET' && req.url === '/time') {
@@ -29,9 +28,13 @@ var server = http.createServer((req, res) => {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     req.on('data', (data) => {
       var newData = JSON.parse(data);
-      console.log(newData);
+      // console.log(newData);
+      res.write(JSON.stringify(newData));
+      res.end();
     })
+  } else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
+    res.write("404 not found");
     res.end();
   }
-
 }).listen(3000, () => console.log('server up on 3000'));
