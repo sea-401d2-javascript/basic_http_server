@@ -1,7 +1,6 @@
 'use strict';
 const http = require('http');
 const fs = require('fs');
-const util = require('util');
 
 http.createServer( (req, res) => {
   if (req.url === '/') {
@@ -17,14 +16,6 @@ http.createServer( (req, res) => {
     return res.end();
   }
 
-  // if (req.url === '/greet') {
-  //   let name = 'boogers';
-  //   let test = req;
-  //   fs.writeFileSync('testLog', util.inspect(test,{depth: null}), 'utf-8');
-  //   res.writeHead(200, {'Content-Type': 'text/html'});
-  //   res.write(JSON.stringify('Hello, ' + name));
-  //   return res.end();
-  // }
   // Don't need to check request method because /greet and /greet/ are different destinations
   if (req.url === '/greet') {
     var name = '';
@@ -35,7 +26,6 @@ http.createServer( (req, res) => {
 
     return req.on('end', function () {
       name = JSON.parse(name).name;
-      fs.writeFileSync('testLog', util.inspect(name,{depth: null}), 'utf-8');
       res.write(JSON.stringify('Hello, ' + name));
       return res.end();
     });
