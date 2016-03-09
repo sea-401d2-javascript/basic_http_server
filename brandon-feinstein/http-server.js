@@ -11,7 +11,7 @@ var server = http.createServer((req, res) => {
     res.write('Hello!');
     res.end();
   }
-  if(req.method === 'GET' && req.url === '/time') {
+  else if(req.method === 'GET' && req.url === '/time') {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     var time = new Date();
     var correctTime = dateformat(time);
@@ -20,12 +20,12 @@ var server = http.createServer((req, res) => {
     res.end();
   }
 
-  if(req.method === 'GET' && req.url === '/greet/' + name) {
+  else if(req.method === 'GET' && req.url === '/greet/' + name) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write('Hello ' + name);
     res.end();
   }
-  if(req.method === 'POST' && req.url === '/greet') {
+  else if(req.method === 'POST' && req.url === '/greet') {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     req.on('data', (data) => {
       var newData = JSON.parse(data);
@@ -34,9 +34,9 @@ var server = http.createServer((req, res) => {
       res.end();
     })
   }
-  // else {
-  //   res.writeHead(404, {'Content-Type': 'text/plain'});
-  //   res.write("404 not found");
-  //   res.end();
-  // }
+  else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
+    res.write("404 not found");
+    res.end();
+  }
 }).listen(3000, () => console.log('server up on 3000'));
