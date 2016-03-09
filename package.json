@@ -1,0 +1,36 @@
+{
+  "name": "basic_http_server",
+  "version": "1.0.0",
+  "description": "an http server in vanilla node that responds to several different routes",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexwuwei/basic_http_server.git"
+  },
+  "keywords": [
+    "vanilla",
+    "http",
+    "node",
+    "javascript",
+    "server"
+  ],
+  "author": "hugo a guerra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexwuwei/basic_http_server/issues"
+  },
+  "homepage": "https://github.com/alexwuwei/basic_http_server#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^2.3.0",
+    "gulp": "^3.9.1",
+    "mocha": "^2.4.5"
+  }
+}
