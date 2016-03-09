@@ -45,3 +45,5 @@ function timeStamp (){
 
   return currentTime;
 }
+
+exports.timeStamp = timeStamp;

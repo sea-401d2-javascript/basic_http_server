@@ -2,7 +2,7 @@
 var gulp = require('gulp');
 var lint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
-var paths = ['*.js', 'img/*.js'];
+var paths = ['*.js', 'test/*.js'];
 
 
 gulp.task('lint', function(){
@@ -12,7 +12,7 @@ gulp.task('lint', function(){
 });
 
 gulp.task('test', function(){
-  return gulp.src('test.js', {read: false})
+  return gulp.src( __dirname + '/test/test.js', {read: false})
   .pipe(mocha({reporter: 'nyan'}));
 });
 
