@@ -8,7 +8,13 @@ exports.time = (req, res) => {
 
 exports.greet = (req, res) => {
   var name = req.url.split('/')[2];
-  res.writeHead(200, {'content-type': 'text/html'});
-  res.write('hello, '+name);
-  res.end();
+  if (req.method === 'GET') {
+    res.writeHead(200, {'content-type': 'text/html'});
+    res.write('hello, '+name);
+    res.end();
+  } else if (req.method === 'POST') {
+    res.writeHead(200, {'content-type': 'application/json'});
+    res.write(JSON.stringify({'name':name}));
+    res.end();
+  }
 };

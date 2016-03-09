@@ -10,8 +10,8 @@ describe('server testing', () => {
     request('localhost:3000')
     .get('/time')
     .end((err, res) => {
-      console.log('response received from get /time');
       if (err) throw err;
+      console.log('response received from get /time');
       expect(res).status(200);
       console.log(res.text);
       done();
@@ -22,10 +22,24 @@ describe('server testing', () => {
     request('localhost:3000')
     .get('/greet/tad')
     .end((err, res) => {
+      if (err) throw err;
       console.log('response received from get /greet/tad');
       expect(res).status(200);
       console.log(res.text);
       expect(res.text).eql('hello, tad');
+      done();
+    });
+  });
+
+  it('shoud post {name:"tad"} to /greet/tad', (done) => {
+    request('localhost:3000')
+    .post('/greet/tad')
+    .end((err, res) => {
+      if (err) throw err;
+      console.log('response received from post /greet/tad');
+      expect(res).status(200);
+      expect(res.body).eql({name:'tad'});
+      console.log(res.body);
       done();
     });
   });
