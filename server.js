@@ -5,7 +5,7 @@ const fs = require('fs');
 var server = http.createServer((req, res) => {
   var url = req.url;
   var name = url.substring(7,url.length);
-  
+
   if (req.url === '/') {
     res.writeHead(200, {'content-type': 'text/html'});
     var index = fs.createReadStream(__dirname + '/public/index.html');
@@ -27,7 +27,7 @@ var server = http.createServer((req, res) => {
 
   }
   if (req.url === '/greet') {
-    console.log(req.body.name);
+    console.log(JSON.parse(req.text.name));
     res.writeHead(200, {'content-type': 'text/html'});
     return res.end();
 
