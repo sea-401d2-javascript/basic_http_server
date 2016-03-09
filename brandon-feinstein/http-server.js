@@ -5,7 +5,7 @@ var dateformat = require('dateformat');
 // var name;
 var server = http.createServer((req, res) => {
   var name = req.url.split('/')[2];
-  console.log(name);
+  // console.log(name);
   if(req.method === 'GET' && req.url === '/') {
     res.writeHead(200, {'Content-Type':'text/plain'}); //tells what kind of response status and what format the response will be in
     res.write('Hello!');
@@ -22,13 +22,15 @@ var server = http.createServer((req, res) => {
   }
   if(req.method === 'GET' && req.url === '/greet/' + name) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-
     res.write('Hello ' + name);
     res.end();
   }
   if(req.method === 'POST' && req.url === '/greet') {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.JSON("hello");
+    req.on('data', (data) => {
+      var newData = JSON.parse(data);
+      console.log(newData);
+    })
     res.end();
   }
 
