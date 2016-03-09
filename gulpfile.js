@@ -2,11 +2,11 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var eslint = require('gulp-eslint');
 
-var files = ['gulpfile.js', 'tcp_server.js', '*.bmp', __dirname + '/lib/**/*.js', __dirname + '/test/**/*.js'];
+var files = ['gulpfile.js', 'server.js', '*.bmp', __dirname + '/lib/**/*.js', __dirname + '/test/**/*.js'];
 
 //Run mocha for tests
 gulp.task('mocha', function() {
-  return gulp.src(__dirname + '/tcp_test.js', {read: false})
+  return gulp.src(__dirname + '/test/server_test.js', {read: false})
              .pipe(mocha( {reporter: 'nyan'}));
 });
 
