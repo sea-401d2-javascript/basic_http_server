@@ -17,16 +17,31 @@ http.createServer( (req, res) => {
     return res.end();
   }
 
+  // if (req.url === '/greet') {
+  //   let name = 'boogers';
+  //   let test = req;
+  //   fs.writeFileSync('testLog', util.inspect(test,{depth: null}), 'utf-8');
+  //   res.writeHead(200, {'Content-Type': 'text/html'});
+  //   res.write(JSON.stringify('Hello, ' + name));
+  //   return res.end();
+  // }
+  // Don't need to check request method because /greet and /greet/ are different destinations
   if (req.url === '/greet') {
-    let name = 'boogers';
-    let test = req;
-    // console.log(test);
-    fs.writeFileSync('testLog', util.inspect(test,{depth: null}), 'utf-8');
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(JSON.stringify('Hello, ' + name));
-    return res.end();
+    var name = '';
+
+    req.on('data', function (data) {
+      name += data;
+    });
+
+    return req.on('end', function () {
+      name = JSON.parse(name).name;
+      fs.writeFileSync('testLog', util.inspect(name,{depth: null}), 'utf-8');
+      res.write(JSON.stringify('Hello, ' + name));
+      return res.end();
+    });
   }
 
+  // Don't need to check request method because /greet and /greet/ are different destinations
   if (req.url.indexOf('/greet/') != -1) {
     let nameIndex = req.url.indexOf('/greet/') + 7;
     let name = req.url.slice(nameIndex);
@@ -41,12 +56,3 @@ http.createServer( (req, res) => {
   res.end();
 
 }).listen(3000, () => console.log('server up on 3000'));
-
-
-
-/*
-app.get('/getRandom/:type', function (req, res) {
-  console.log('Request for ' + req.params.type + ' Pokemon received');
-  getPokemonByType([], res, [req.params.type]);
-});
-*/
