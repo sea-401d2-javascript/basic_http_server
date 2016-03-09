@@ -1,38 +1,32 @@
 var chai = require('chai');
 var chaiHTTP = require('chai-http');
+var server = require(__dirname + '/../http-server');
 chai.use(chaiHTTP);
-
-var request = chai.request;
 var expect = chai.expect;
-require(__dirname + '/../server');
-var fs = require('fs');
+var request = chai.request;
+var dateformat = require('dateformat');
 
 describe('Vanilla HTTP server tests', () => {
-  var html;
-  before((done) => {
-    fs.readFile(__dirname + '/../public/index.html', (err, data){
-      html = data.toString();
-      done();
-    })
-  })
-  it('should respond to /hello with hello', (done) => {
+  
+  it('should respond to / with hello', (done) => {
     request('localhost:3000')
-      .get('/hello')
+      .get('/')
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.body).to.eql({message: 'hello'});
+        expect(res.text).to.eql('Hello!');
         done();
       })
   })
-  it('should return "Hello, Brandon" with POST request', (done) => {
-    request('localhost:3000')
-    .post('/greet')
-    .send({'name': 'Brandon'})
-    .end((err, res) => {
-      expect(err).to.eql(null);
-      expect(res.text).to.eql('"Hello, Brandon"');
-      done();
-    });
-  });
+
+  // it('should return "Hello, Brandon" with POST request', (done) => {
+  //   request('localhost:3000')
+  //   .post('/greet')
+  //   .send({'name': 'Brandon'})
+  //   .end((err, res) => {
+  //     expect(err).to.eql(null);
+  //     expect(res.text).to.eql('"Hello, Brandon"');
+  //     done();
+  //   });
+  // });
 })

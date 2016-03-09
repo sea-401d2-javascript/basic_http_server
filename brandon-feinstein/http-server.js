@@ -19,6 +19,7 @@ var server = http.createServer((req, res) => {
     // res.write(JSON.stringify(time));
     res.end();
   }
+
   if(req.method === 'GET' && req.url === '/greet/' + name) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write('Hello ' + name);
@@ -32,9 +33,10 @@ var server = http.createServer((req, res) => {
       res.write(JSON.stringify(newData));
       res.end();
     })
-  } else {
-    res.writeHead(404, {'Content-Type': 'text/plain'});
-    res.write("404 not found");
-    res.end();
   }
+  // else {
+  //   res.writeHead(404, {'Content-Type': 'text/plain'});
+  //   res.write("404 not found");
+  //   res.end();
+  // }
 }).listen(3000, () => console.log('server up on 3000'));

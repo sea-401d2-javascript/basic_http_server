@@ -49,7 +49,7 @@ gulp.task('lint', function(){
 });
 
 gulp.task('test', function () {
-  return gulp.src('test/bmt-test.js', {read: false})
+  return gulp.src('test/http-test.js', {read: false})
 	.pipe(mocha({reporter: 'nyan'}));
 });
 
