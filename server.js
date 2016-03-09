@@ -1,19 +1,32 @@
 var http = require('http');
 var fs = require('fs');
+var date = new Date();
+var url = require('url');
+// var currentHour = date.getHours();
 
 var server = http.createServer((req, res) => {
   if (req.method === 'GET' && req.url === '/time') {
-    res.writeHead(200, {'Content-Type': 'text/html'})
-    res.write();
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(String(date));
     return res.end();
   }
 
-  if (req.method === 'GET' && req.url === '/greet') {
-
+  if (req.method === 'GET' && req.url.indexOf('/greet/') > -1) {
+    var thisUrl = url.parse(req.url);
+    console.log(thisUrl);
+    var thisUrlPath = String(thisUrl.pathname);
+    // var thisName = thisUrlPath.split('/');
+    // console.log(thisName);
+    console.log(thisUrlPath);
+    // var regex = new RegExp('/\Wgreet\/(\w+)/');
+    var thisUrlName = thisUrlPath.match(/\Wgreet\/(\w+)/);
+    console.log('url name is:', thisUrlName[1]);
+    res.write(JSON.stringify(thisUrlName[1] + ', hello. I see you there.'));
+    res.end();
   }
 
   if (req.method === 'POST' && req.url === '/greet') {
-    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.writeHead(200, {'Content-Type': 'application/json'})
 
   }
 
