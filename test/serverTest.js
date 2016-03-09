@@ -32,12 +32,13 @@ describe('Vanilla HTTP server tests', () => {
     request('localhost:3000')
       .get('/time')
       .end((err,res) => {
+        let time = res.text;
         expect(err).to.eql(null);
-        expect(res.text.indexOf('GMT')).to.be.above(-1);
+        expect(time.indexOf('GMT')).to.be.above(-1);
         done();
       });
   });
-  it('should return "Hello, name"', (done) => {
+  it('should return "Hello, name" with GET request', (done) => {
     request('localhost:3000')
       .get('/greet/name')
       .end((err,res) => {
@@ -45,6 +46,16 @@ describe('Vanilla HTTP server tests', () => {
         expect(res.text).to.eql('"Hello, name"');
         done();
       });
+  });
+  it('should return "Hello, boogers" with POST request', (done) => {
+    request('localhost:3000')
+    .post('/greet')
+    .send({'name': 'boogers'})
+    .end((err, res) => {
+      expect(err).to.eql(null);
+      expect(res.text).to.eql('"Hello, boogers"');
+      done();
+    });
   });
 
   it('should return the 404 page', (done) => {

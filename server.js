@@ -1,6 +1,7 @@
 'use strict';
 const http = require('http');
 const fs = require('fs');
+const util = require('util');
 
 http.createServer( (req, res) => {
   if (req.url === '/') {
@@ -8,12 +9,24 @@ http.createServer( (req, res) => {
     var index = fs.createReadStream(__dirname + '/lib/index.html');
     return index.pipe(res);
   }
+
   if (req.url === '/time') {
     res.writeHead(200, {'content-type': 'application/json'});
     let time = new Date();
     res.write(JSON.stringify(time.toUTCString()));
     return res.end();
   }
+
+  if (req.url === '/greet') {
+    let name = 'boogers';
+    let test = req;
+    // console.log(test);
+    fs.writeFileSync('testLog', util.inspect(test,{depth: null}), 'utf-8');
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(JSON.stringify('Hello, ' + name));
+    return res.end();
+  }
+
   if (req.url.indexOf('/greet/') != -1) {
     let nameIndex = req.url.indexOf('/greet/') + 7;
     let name = req.url.slice(nameIndex);

@@ -14,6 +14,6 @@ It should also have a separate post request to /greet that takes the name in JSO
 There should be tests using chaiHTTP for both routes, as well as a Gulpfile/package.json
 
 ##Rubric:
-  * Tests: 4ptsf
+  * Tests: 4pts
   * Routes: 4pts
   * Organization and gulpfile/package.json 2pts
