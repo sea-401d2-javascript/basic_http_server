@@ -1,8 +1,10 @@
-var chai = require('chai')
+var chai = require('chai');
 chai.use(require('chai-http'));
 
 var request = chai.request;
 var expect = chai.expect;
+
+require(__dirname + '/../server.js');
 
 describe('server testing', () => {
 
