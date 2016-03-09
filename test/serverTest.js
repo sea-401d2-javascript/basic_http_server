@@ -28,6 +28,16 @@ describe('Vanilla HTTP server tests', () => {
         done();
       });
   });
+  it('should return the server\'s time', (done) => {
+    request('localhost:3000')
+      .get('/time')
+      .end((err,res) => {
+        expect(err).to.eql(null);
+        expect(res.text.indexOf('GMT')).to.be.above(-1);
+        console.log(res.text);
+        done();
+      });
+  });
   it('should return the 404 page', (done) => {
     request('localhost:3000')
       .get('/404idj')
