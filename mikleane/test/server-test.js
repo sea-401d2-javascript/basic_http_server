@@ -25,13 +25,13 @@ describe('vanilla HTTP server tests', () => {
       done();
     })
   })
-  it('should respond to /greet with welcome', (done) =>{
+  it('should respond to /greet/name with hello', (done) =>{
     request('localhost:3000')
-    .get('/greet')
+    .get('/greet/mikleane')
     .end((err, res) => {
       expect(err).to.eql(null);
       expect(res).to.have.status(200);
-      expect(res.body).to.eql({message: 'Welcome!'})
+      expect(res.text).to.eql('<h1>Hello, mikleane!</h1>');
       done();
     })
   })
