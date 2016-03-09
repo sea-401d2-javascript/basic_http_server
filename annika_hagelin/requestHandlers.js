@@ -1,7 +1,14 @@
-exports.time = function(res, req) {
+exports.time = (req, res) => {
   console.log('get time');
-  req.writeHead(200, {'content-type': 'text/html'});
+  res.writeHead(200, {'content-type': 'text/html'});
   var d = new Date();
-  req.write(d.toString());
-  req.end();
-}
+  res.write(d.toString());
+  res.end();
+};
+
+exports.greet = (req, res) => {
+  var name = req.url.split('/')[2];
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.write('hello, '+name);
+  res.end();
+};
