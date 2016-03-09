@@ -1,0 +1,28 @@
+{
+  "name": "http_server",
+  "version": "0.1.0",
+  "description": "simple http server",
+  "main": "server.js",
+  "scripts": {
+    "test": "gulp lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jalynnlim/basic_http_server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jalynnlim/basic_http_server/issues"
+  },
+  "homepage": "https://github.com/jalynnlim/basic_http_server#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.0",
+    "gulp-mocha": "^2.2.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0"
+  }
+}
