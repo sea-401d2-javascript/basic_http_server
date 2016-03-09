@@ -1,0 +1,25 @@
+{
+  "name": "sawako-http-server",
+  "version": "1.0.0",
+  "description": "Creating basic vanilla http server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishidas/basic_http_server.git"
+  },
+  "author": "sawako.yoriko@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ishidas/basic_http_server/issues"
+  },
+  "homepage": "https://github.com/ishidas/basic_http_server#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "eslint": "^2.3.0",
+    "gulp": "^3.9.1"
+  }
+}
