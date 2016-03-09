@@ -6,6 +6,7 @@ chai.use(chaiHTTP);
 var request = chai.request;
 var expect = chai.expect;
 require(__dirname + '/../server.js');
+var time = new Date();
 
 describe('http server', () => {
   it('should respond to /greet/ with greeting', (done) => {
@@ -27,7 +28,7 @@ describe('http server', () => {
       expect(err).to.eql(null);
       expect(data).to.have.status(200);
       expect(data).to.have.header('content-type','text/html');
-      expect(typeof data.text).to.eql('string');
+      expect(data.text).to.eql('IT IS CURRENTLY: ' + time.toString().substr(4,20));
       done();
     });
   });
