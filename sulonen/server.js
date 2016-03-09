@@ -5,6 +5,12 @@ const fs = require('fs');
 
 http.createServer((req, res) => {
 
+  // root
+  if (req.url === '/') {
+    res.writeHead(200, {'content-type': 'text/html'});
+    res.write('<h1>All your base are belong to us...</h>\n');
+    return res.end();
+  }
   // time
   if (req.method === 'GET' && req.url === '/time') {
     var time = new Date();
@@ -20,11 +26,12 @@ http.createServer((req, res) => {
     return res.end();
   }
 
-  // root
-  if (req.url === '/') {
+  var nameUrl = new RegExp(/\/greet\/(.*)$/);
+  if (req.method === 'GET' && nameUrl.test(req.url)) {
+    var match = nameUrl.exec(req.url);
     res.writeHead(200, {'content-type': 'text/html'});
-    var index = fs.createReadStream(__dirname + '/public/index.html');
-    return index.pipe(res);
+    res.write('Hail and well met, ' + match[1] + '!\n');
+    return res.end();
   }
 
   // default case

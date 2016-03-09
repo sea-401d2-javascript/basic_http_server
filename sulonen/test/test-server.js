@@ -6,10 +6,6 @@ chai.use(chai_http);
 const request = chai.request;
 const expect = chai.expect;
 
-
-
-//require(__dirname + '/../server');
-
 describe('HTTP Server Tests', () => {
   it('should respond to /time with current time', (done) => {
     request('localhost:3000')
