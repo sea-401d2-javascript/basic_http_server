@@ -24,14 +24,17 @@ var server = http.createServer((req, res) => {
     req.on('data', (data) => {
       var namePost = JSON.parse(data);
       res.write(JSON.stringify(namePost));
-      // console.log(JSON.parse(data))
-      res.end();
     })
-  }
+    req.on('end', () => {
+      return res.end()
+    });
+    // return res.end();
+  } else {
 
-  // res.writeHead(404, {'content-type': 'text/html'});
-  // res.write('404 Not Found');
-  // res.end();
+  res.writeHead(404, {'content-type': 'text/html'});
+  res.write('404 Not Found');
+  res.end();
+}
 }).listen(3000, () => console.log('server up on 3000'));
 
   // if (req.method === 'GET' && req.url === '/') {
