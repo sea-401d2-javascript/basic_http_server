@@ -12,7 +12,7 @@ describe('HTTP Server Tests', () => {
       .get('/time')
       .end((err, res) => {
         if (err) throw err;
-        var regex = new RegExp(/.+:.+:.+/);
+        var regex = new RegExp(/\d+:\d+:\d+/);
         expect(err).to.equal(null);
         expect(res).to.have.status(200);
         expect(regex.test(res.text)).to.eql(true);
