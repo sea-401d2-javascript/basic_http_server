@@ -25,7 +25,7 @@ var server = http.createServer((req, res) => {
     req.on('data',(data) =>{
       var user = data.toString();
       usr = JSON.parse(user);
-      res.write('Welcome' + usr.name);
+      res.write('Welcome ' + usr.name);
       req.on('end', () =>{
         return res.end();
       })

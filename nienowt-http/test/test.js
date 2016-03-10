@@ -33,14 +33,15 @@ describe('http server', () => {
     });
   });
 
-  it('should respond to /greet with a json object', (done) => {
+  it('should respond to /greet with a greet message', (done) => {
     request('localhost:3000')
     .post('/greet')
+    .send('{"name":"Dan"}')
     .end((err, data) => {
       expect(err).to.eql(null);
       expect(data).to.have.status(200);
-      expect(data).to.have.header('content-type','application/json');
-      expect(data.body).to.eql({Greeting:'Welcome TERRY'});
+      expect(data).to.have.header('content-type','text/html');
+      expect(data.text).to.eql('Welcome Dan');
       done();
     });
   });
