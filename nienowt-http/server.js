@@ -1,5 +1,6 @@
 var http = require('http');
-
+var event = require('events').EventEmitter;
+var ee = new event();
 
 
 var server = http.createServer((req, res) => {
@@ -20,19 +21,20 @@ var server = http.createServer((req, res) => {
   }
 
   if(req.method === 'POST' && req.url === '/greet') {
-    res.writeHead(200, {'content-type':'text/http'});
+    res.writeHead(200, {'content-type':'text/html'});
     req.on('data',(data) =>{
       var user = data.toString();
       usr = JSON.parse(user);
-      console.log('Welcome', usr.name);
+      res.write('Welcome' + usr.name);
+      req.on('end', () =>{
+        return res.end();
+      })
 
     })
-    // res.write('welcome ' +usr.name);
+  } else {
+    res.writeHead(404, {'content-type':'text/html'});
+    res.write('Nope ;( ');
     return res.end();
   }
-
-  res.writeHead(404, {'content-type':'text/html'});
-  res.write('Nope ;( ');
-  return res.end();
 
 }).listen(3000, () => console.log('alive: three thousand'));

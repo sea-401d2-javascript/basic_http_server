@@ -35,7 +35,7 @@ describe('http server', () => {
 
   it('should respond to /greet with a json object', (done) => {
     request('localhost:3000')
-    .post('/greet/TERRY')
+    .post('/greet')
     .end((err, data) => {
       expect(err).to.eql(null);
       expect(data).to.have.status(200);
