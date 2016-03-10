@@ -20,7 +20,7 @@ var server = http.createServer((req, res) => {
       var body = JSON.parse(data);
       console.log(body);
     });
-    res.writeHead('Content-Type: text/html');
+    res.writeHead(200, 'Content-Type: text/html');
     res.write('Post Received');
     return res.end();
   }
@@ -31,3 +31,4 @@ var server = http.createServer((req, res) => {
 }).listen(3000, () => {
   console.log('Server started on port 3000');
 });
+
