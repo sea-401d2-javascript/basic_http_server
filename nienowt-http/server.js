@@ -1,7 +1,4 @@
 var http = require('http');
-var event = require('events').EventEmitter;
-var ee = new event();
-
 
 var server = http.createServer((req, res) => {
   var id = req.url.split('/')[2];
@@ -14,13 +11,13 @@ var server = http.createServer((req, res) => {
     return res.end();
   }
 
-  if(req.method === 'GET' && req.url === '/greet/' + id) {
+  if (req.method === 'GET' && req.url === '/greet/' + id) {
     res.writeHead(200, {'content-type':'text/html'});
     res.write('Welcome '+ id + ', this is life now.');
     return res.end();
   }
 
-  if(req.method === 'POST' && req.url === '/greet') {
+  if (req.method === 'POST' && req.url === '/greet') {
     res.writeHead(200, {'content-type':'text/html'});
     req.on('data',(data) =>{
       var user = data.toString();
@@ -28,9 +25,8 @@ var server = http.createServer((req, res) => {
       res.write('Welcome ' + usr.name);
       req.on('end', () =>{
         return res.end();
-      })
-
-    })
+      });
+    });
   } else {
     res.writeHead(404, {'content-type':'text/html'});
     res.write('Nope ;( ');
