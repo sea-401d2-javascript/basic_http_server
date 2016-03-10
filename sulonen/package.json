@@ -26,5 +26,7 @@
     "gulp-eslint": "^2.0.0",
     "gulp-mocha": "^2.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "querystring": "^0.2.0"
+  }
 }
