@@ -1,7 +1,6 @@
 'use strict';
 
 const http = require('http');
-const fs = require('fs');
 
 http.createServer((req, res) => {
 
@@ -11,6 +10,7 @@ http.createServer((req, res) => {
     res.write('<h1>All your base are belong to us...</h>\n');
     return res.end();
   }
+
   // time
   if (req.method === 'GET' && req.url === '/time') {
     var time = new Date();
@@ -26,12 +26,29 @@ http.createServer((req, res) => {
     return res.end();
   }
 
+  // greet text
   var nameUrl = new RegExp(/\/greet\/(.*)$/);
   if (req.method === 'GET' && nameUrl.test(req.url)) {
     var match = nameUrl.exec(req.url);
     res.writeHead(200, {'content-type': 'text/html'});
     res.write('Hail and well met, ' + match[1] + '!\n');
     return res.end();
+  }
+
+  // greet JSON
+  if (req.method === 'POST') {
+    var body = '';
+    req.on('data', function (chunk) {
+      body += chunk;
+    });
+    req.on('end', function() {
+      var name = new RegExp(/{user:(.+)}/);
+      var match = name.exec(body);
+      var greeting = 'Hail and well met, ' + match[1] + '!\n';
+      res.writeHead(200);
+      res.end(greeting);
+    });
+    return;
   }
 
   // default case
