@@ -12,6 +12,7 @@
     "chai-http": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^2.0.0",
+    "gulp-mocha": "^2.2.0",
     "mocha": "^2.4.5",
     "superagent": "^1.8.0-beta.2",
     "superagent-cli": "^2.1.0"
