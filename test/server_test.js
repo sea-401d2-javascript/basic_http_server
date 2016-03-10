@@ -49,6 +49,8 @@ describe('Vanilla HTTP server tests', () => {
         .end((err, res) => {
           expect(err).to.eql(null);
           expect(res).to.have.status(200);
+          // console.log(res.text);
+
           expect(res.text).to.eql('alem');
           done();
         });

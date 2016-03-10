@@ -26,8 +26,6 @@ var server = http.createServer((req, res) => {
       return res.end();
     });
 
-
-
   }
   if (req.url === '/greet/' + name) {
     res.writeHead(200, {'content-type': 'text/html'});
@@ -35,6 +33,5 @@ var server = http.createServer((req, res) => {
     return res.end();
 
   }
-
 
 }).listen(3000, () => {console.log('Server up on port 3000');});
