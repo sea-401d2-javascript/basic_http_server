@@ -22,7 +22,7 @@ var server = http.createServer( (req, res) => {
   if(req.method === 'POST' && req.url === '/greet') {
     res.writeHead(200, {'Content-Type': 'application/json'});
     console.log('nailed, it');
-    res.write(JSON.stringify({name}));
+    res.write(JSON.stringify({'name': name}));
     return res.end()
   }
 

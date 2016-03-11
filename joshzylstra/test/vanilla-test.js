@@ -15,7 +15,7 @@ describe('Test HTTP server',() => {
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res).to.eql(now);
+        expect(res.json).to.eql(now);
         console.log(now);
         done();
       })
@@ -34,7 +34,7 @@ describe('Test HTTP server',() => {
 
   it('should get back at 404 error', (done) => {
     request('localhost:3000')
-      .get('/fakeURL')
+      .get('/notReal')
       .end((err, res) => {
         expect(err).to.not.eql(null);
         expect(res).to.have.status(404);
