@@ -18,7 +18,7 @@ gulp.task('default', ['lint']);
  // Task for Mocha - Testing my code
 gulp.task('mocha', function(){
   console.log(__dirname);
-  return gulp.src('./test/greet-test.js')
+  return gulp.src('./test/vanilla-test.js')
   .pipe(mocha());
 });
  //Default Tasks - If only Gulp
