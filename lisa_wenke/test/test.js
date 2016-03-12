@@ -21,6 +21,16 @@ describe('Testing Vanilla Server', () => {
       done();
     });
   });
+  it('should get name of greeting from /greet/name', (done) =>{
+    request('localhost:3000')
+    .get('/greet/Lisa')
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+      expect(err).to.eql(null);
+      expect(res.text).to.eql('hello, Lisa');
+      done();
+    });
+  });
 
   it('should return hello, Lisa with post request', (done) => {
     request('localhost:3000')
@@ -34,14 +44,4 @@ describe('Testing Vanilla Server', () => {
     });
   });
 
-  it('should send back a 404 error', (done) => {
-    request('localhost:3000')
-    .get('/')
-    .end((err,res) => {
-      expect(err).to.eql(null);
-      expect(res).to.have.status(404);
-      expect(res.text).to.eql('404 Not Found');
-      done();
-    });
-  });
 });
