@@ -4,7 +4,6 @@ var server = require(__dirname + '/../http-server');
 chai.use(chaiHTTP);
 var expect = chai.expect;
 var request = chai.request;
-var dateformat = require('dateformat');
 
 describe('Vanilla HTTP server tests', () => {
 
@@ -16,8 +15,8 @@ describe('Vanilla HTTP server tests', () => {
         expect(res).to.have.status(200);
         expect(res.text).to.eql('Hello!');
         done();
-      })
-  })
+      });
+  });
 
   it('should return "Hello, Brandon" with POST request', (done) => {
     request('localhost:3000')
@@ -29,4 +28,4 @@ describe('Vanilla HTTP server tests', () => {
       done();
     });
   });
-})
+});
