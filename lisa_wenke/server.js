@@ -16,21 +16,24 @@ var server = http.createServer((req, res) => {
   if(req.method === 'GET' && req.url === '/greet/name') {
     var name = 'Lisa';
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(JSON.stringify('hello, ' + name));
+    res.write('<h1>hello, ' + name + '</h1>');
     return res.end();
   }
-  if(req.method === 'POST' && req.url === '/greet/name') {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-  }
-  // if(req.method === 'POST' && req.url === '/greet/') {
 
-  // }
+  if(req.method === 'POST' && req.url === '/greet/') {
+    req.on('data', (data) => {
+      console.log(String(data));
+      res.write(String(data));
+      res.end();
+    });
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('hello');
+    return res.end();
+  }
   if(req.url === '/') {
     res.writeHead(200, {'Content-Type': 'text/html'});
     var index = fs.createReadStream(__dirname + '/public/index.html');
     return index.pipe(res);
-
-
   }
   res.writeHead(404, {'Content-Type': 'text/html'});
   res.write('404 Not Found');
